@@ -1,6 +1,6 @@
 import { DataSource } from 'typeorm';
 import { Todo } from './todos/entities/todo.entity';
-import { TypeOrmNamingStrategy } from './typeOrmNamingStrategy';
+import { CustomNamingStrategy } from './customNamingStrategy';
 
 export const AppDataSource = new DataSource({
   type: 'mysql', // MySQL の場合
@@ -13,5 +13,5 @@ export const AppDataSource = new DataSource({
   synchronize: false, // true にすると migration が自動で実行されます。
   entities: [Todo], // エンティティクラスを指定する（複数の場合はカンマで区切る）
   migrations: ['dist/migration/*.js'], // dist ディレクトリ内の js ファイルを指定する
-  namingStrategy: new TypeOrmNamingStrategy(),
+  namingStrategy: new CustomNamingStrategy(),
 });
