@@ -9,16 +9,16 @@ import {
 @Entity()
 export class Todo {
   @PrimaryGeneratedColumn()
-  id?: number;
+  id: number;
 
   @Column()
   body: string;
 
   @CreateDateColumn()
-  createdAt?: Date;
+  createdAt: Date;
 
   @UpdateDateColumn()
-  updatedAt?: Date;
+  updatedAt: Date;
 
   constructor(body: string) {
     this.body = body;
