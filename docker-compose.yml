@@ -6,8 +6,12 @@ services:
       context: .
       dockerfile: Dockerfile
     restart: always
+    expose:
+      - 3000
+      - 9229
     ports:
       - 3000:3000
+      - 9229:9229
     tty: true
     volumes:
       - type: bind
