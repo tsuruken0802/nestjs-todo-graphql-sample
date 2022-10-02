@@ -9,6 +9,7 @@ scalar DateTime
 
 type Mutation {
   addTodo(todoDto: TodoDto!): Todo!
+  updateTodo(todoDto: TodoDto!, todoId: Float!): Todo!
 }
 
 type Query {

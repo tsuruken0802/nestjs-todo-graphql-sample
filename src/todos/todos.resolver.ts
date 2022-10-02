@@ -20,4 +20,14 @@ export class TodosResolver {
       throw err;
     });
   }
+
+  @Mutation(() => Todo)
+  public async updateTodo(
+    @Args('todoDto') todoDto: TodoDto,
+    @Args('todoId') todoId: number,
+  ): Promise<Todo> {
+    return await this.todosService.updateTodo(todoDto, todoId).catch((err) => {
+      throw err;
+    });
+  }
 }

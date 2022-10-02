@@ -31,4 +31,17 @@ export class TodosService {
     });
     return newTodo;
   }
+
+  public async updateTodo(
+    todoDto: TodoDto,
+    todoId: number,
+  ): Promise<Todo | null> {
+    const todo = await this.todoRepository.findOneBy({ id: todoId });
+    if (!todo) {
+      return null;
+    }
+    todo.body = todoDto.body;
+    const result = await this.todoRepository.save(todo);
+    return result;
+  }
 }
