@@ -1,4 +1,5 @@
-import { Query, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { TodoDto } from './dto/todo.dto';
 import { Todo } from './entities/todo.entity';
 import { TodosService } from './todos.service';
 
@@ -9,6 +10,13 @@ export class TodosResolver {
   @Query(() => [Todo])
   public async todos() {
     return await this.todosService.getAllTodos().catch((err) => {
+      throw err;
+    });
+  }
+
+  @Mutation(() => Todo)
+  public async addTodo(@Args('todoDto') todoDto: TodoDto): Promise<Todo> {
+    return await this.todosService.addTodo(todoDto).catch((err) => {
       throw err;
     });
   }

@@ -1,6 +1,11 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { TodoDto } from './dto/todo.dto';
 import { Todo } from './entities/todo.entity';
 
 @Injectable()
@@ -17,5 +22,13 @@ export class TodosService {
     if (!todos) throw new NotFoundException();
 
     return todos;
+  }
+
+  public async addTodo(todoDto: TodoDto): Promise<Todo> {
+    const newTodo = this.todoRepository.create(todoDto);
+    await this.todoRepository.save(newTodo).catch((err) => {
+      new InternalServerErrorException();
+    });
+    return newTodo;
   }
 }
