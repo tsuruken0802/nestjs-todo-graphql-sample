@@ -44,4 +44,8 @@ export class TodosService {
     const result = await this.todoRepository.save(todo);
     return result;
   }
+
+  public async deleteTodo(todoId: number): Promise<number | null> {
+    return (await this.todoRepository.delete(todoId)).affected;
+  }
 }
