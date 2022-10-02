@@ -26,9 +26,7 @@ export class TodosService {
 
   public async addTodo(todoDto: TodoDto): Promise<Todo> {
     const newTodo = this.todoRepository.create(todoDto);
-    await this.todoRepository.save(newTodo).catch((err) => {
-      new InternalServerErrorException();
-    });
+    await this.todoRepository.save(newTodo);
     return newTodo;
   }
 
